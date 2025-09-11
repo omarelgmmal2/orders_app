@@ -39,8 +39,8 @@ class AddTitleView extends StatefulWidget {
 
 class _AddTitleViewState extends State<AddTitleView> {
   final bloc = KiwiContainer().resolve<SetUpdateAddressBloc>();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
+  final phoneController = TextEditingController();
+  final descriptionController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
 
@@ -76,14 +76,11 @@ class _AddTitleViewState extends State<AddTitleView> {
               physics: const ClampingScrollPhysics(),
               children: [
                 SizedBox(
-                  height: 230.h,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w),
-                    child: CustomGoogleMap(
-                      isAddTitle: widget.isAddTitle,
-                      lat: widget.lat,
-                      lng: widget.lng,
-                    ),
+                  height: 300.h,
+                  child: CustomGoogleMap(
+                    isAddTitle: widget.isAddTitle,
+                    lat: widget.lat,
+                    lng: widget.lng,
                   ),
                 ),
                 verticalSpace(12),

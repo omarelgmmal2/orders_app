@@ -254,7 +254,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
                                       if (state is LogoutLoadingState) {
                                         return SizedBox(
                                           height: 45.h,
-                                          width: double.infinity,
+                                          width: double.infinity.w,
                                           child: Center(
                                             child: CircularProgressIndicator(
                                               color: AppColor.mainColor,

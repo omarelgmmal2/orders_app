@@ -12,8 +12,9 @@ import '../../../../../features/my_account/wallet/wallet_bloc.dart';
 import 'custom_form_input.dart';
 
 class CustomChargeAlert extends StatefulWidget {
-  const CustomChargeAlert({super.key, required this.bloc});
   final WalletBloc bloc;
+  const CustomChargeAlert({super.key, required this.bloc});
+
   @override
   State<CustomChargeAlert> createState() => _CustomChargeAlertState();
 }
@@ -48,8 +49,10 @@ class _CustomChargeAlertState extends State<CustomChargeAlert> {
                 bloc: widget.bloc,
                 builder: (context, state) {
                   if (state is WalletChargeLoading) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
+                    return Center(
+                      child: CircularProgressIndicator(
+                        color: AppColor.mainColor,
+                      ),
                     );
                   }
                   return AppButton(
