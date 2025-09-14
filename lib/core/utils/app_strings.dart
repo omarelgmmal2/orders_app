@@ -16,5 +16,4 @@ class AppStrings {
   static const String searchProductsEndPoint = "search/";
   static const String categoriesEndPoint = "categories";
   static const String productsEndPoint = "products";
-  static const String mapApiKey = "AIzaSyCw3LSmKPIJeP1O-5J3KSzIUP2-pGUTT5Q";
 }

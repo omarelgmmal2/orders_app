@@ -37,8 +37,8 @@ class _CustomMyDataState extends State<CustomMyData> {
                   builder: (context, setState1) => Container(
                     alignment: Alignment.center,
                     clipBehavior: Clip.antiAlias,
-                    height: 70.h,
-                    width: 75.w,
+                    height: 71.h,
+                    width: 76.w,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15.r),
                       image: DecorationImage(

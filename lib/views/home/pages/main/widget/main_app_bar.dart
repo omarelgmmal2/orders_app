@@ -4,15 +4,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kiwi/kiwi.dart';
 import '../../../../../core/design/app_image.dart';
-import '../../../../../core/design/custom_rich_text.dart';
 import '../../../../../core/logic/cache_helper.dart';
 import '../../../../../core/logic/helper_methods.dart';
 import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/spacing.dart';
 import '../../../../../core/utils/text_style_theme.dart';
+import '../../../../../features/address/get_location.dart';
 import '../../../../../features/cart/cart_bloc.dart';
+import '../../../../../features/my_orders/my_orders_bloc.dart';
 import '../../../../../generated/locale_keys.g.dart';
+import '../../../../../model/address_model.dart';
+import '../../../../sheets/titles_sheet.dart';
 import '../../../cart_and_orders/cart_view.dart';
 
 class MainAppBar extends StatefulWidget implements PreferredSizeWidget {
@@ -48,6 +51,7 @@ class MainAppBar extends StatefulWidget implements PreferredSizeWidget {
 
 class _MainAppBarState extends State<MainAppBar> {
   final cartBloc = KiwiContainer().resolve<CartBloc>();
+  AddressModel? model;
 
   @override
   void initState() {
@@ -61,7 +65,9 @@ class _MainAppBarState extends State<MainAppBar> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
+        alignment: Alignment.bottomCenter,
         padding: EdgeInsetsDirectional.symmetric(horizontal: 16.w),
+        height: 60.h,
         child: Row(
           children: [
             AppImage(AppImages.vegetableBasket, height: 20.h, width: 20.w),
@@ -71,12 +77,70 @@ class _MainAppBarState extends State<MainAppBar> {
               style: TextStyleTheme.textStyle14Bold,
             ),
             const Spacer(),
-            CustomRichText(
-              text: LocaleKeys.home_delivery_to.tr(),
-              textStyle: TextStyleTheme.textStyle12Medium,
-              subText: LocaleKeys.home_address.tr(),
-              subTextStyle: TextStyleTheme.textStyle14Regular,
-              slash: "\n",
+            StreamBuilder<bool>(
+              stream: GetLocation.controller.stream,
+              builder: (context, snapshot) {
+                return SizedBox(
+                  width: 160.w,
+                  child: GestureDetector(
+                    onTap: () async {
+                      model = await showModalBottomSheet(
+                        clipBehavior: Clip.antiAlias,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(35.r),
+                            topRight: Radius.circular(35.r),
+                          ),
+                        ),
+                        context: context,
+                        builder: (context) => const TitlesSheet(),
+                      );
+                      if (model?.location.isNotEmpty ?? false) {
+                        final list = model!.location.split(' ');
+                        list.removeAt(0);
+                        String location = list.join(' ');
+
+                        CacheHelper.setCurrentLocation(location);
+                        GetLocation.controller.add(true);
+                      }
+                      KiwiContainer().resolve<MyOrdersBloc>().addressId = model
+                          ?.id
+                          .toString();
+                    },
+                    child: Text.rich(
+                      overflow: context.locale.languageCode == 'ar'
+                          ? TextOverflow.ellipsis
+                          : null,
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: LocaleKeys.home_delivery_to.tr(),
+                            style: TextStyleTheme.textStyle12Bold.copyWith(
+                              color: AppColor.mainColor,
+                            ),
+                          ),
+                          const TextSpan(text: '\n'),
+                          TextSpan(
+                            text:
+                                CacheHelper.getCurrentLocation()?.isEmpty ??
+                                    true
+                                ? LocaleKeys.home_add_addresses.tr()
+                                : CacheHelper.getCurrentLocation(),
+                            style: TextStyle(
+                              color: AppColor.mainColor,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.normal,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
             ),
             horizontalSpace(context.locale.languageCode == 'ar' ? 20.w : 30.w),
             const Spacer(),

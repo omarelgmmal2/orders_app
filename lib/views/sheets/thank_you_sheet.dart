@@ -9,6 +9,7 @@ import 'package:vegetable_orders_project/core/utils/text_style_theme.dart';
 import 'package:vegetable_orders_project/generated/locale_keys.g.dart';
 import 'package:vegetable_orders_project/views/home/home_view.dart';
 import '../../core/design/app_image.dart';
+import '../../core/utils/app_color.dart';
 
 class ThankYouSheet extends StatelessWidget {
   const ThankYouSheet({super.key});
@@ -43,6 +44,9 @@ class ThankYouSheet extends StatelessWidget {
                   Expanded(
                     child: AppButton(
                       text: LocaleKeys.home_nav_my_orders.tr(),
+                      textStyle: TextStyleTheme.textStyle15Bold.copyWith(
+                        color: AppColor.white,
+                      ),
                       onPressed: () {
                         navigateTo(
                           toPage: const HomeView(isNavigateToOrder: true),
