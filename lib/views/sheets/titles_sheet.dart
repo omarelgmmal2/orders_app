@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kiwi/kiwi.dart';
+import 'package:vegetable_orders_project/core/utils/app_color.dart';
 import 'package:vegetable_orders_project/core/utils/app_images.dart';
 import 'package:vegetable_orders_project/core/utils/spacing.dart';
 import 'package:vegetable_orders_project/core/utils/text_style_theme.dart';
@@ -53,8 +54,10 @@ class _TitlesSheetState extends State<TitlesSheet> {
                   bloc: bloc,
                   builder: (context, state) {
                     if (state is GetAddressesLoadingState) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
+                      return Center(
+                        child: CircularProgressIndicator(
+                          color: AppColor.mainColor,
+                        ),
                       );
                     } else if (bloc.list.isEmpty) {
                       return Column(

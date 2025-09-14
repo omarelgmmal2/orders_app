@@ -9,6 +9,7 @@ import 'package:vegetable_orders_project/core/utils/app_color.dart';
 import 'package:vegetable_orders_project/core/utils/app_images.dart';
 import 'package:vegetable_orders_project/core/utils/spacing.dart';
 import 'package:vegetable_orders_project/views/home/cart_and_orders/widget/custom_orders_money.dart';
+import 'package:vegetable_orders_project/views/home/cart_and_orders/widget/custom_pay_way.dart';
 import '../../../core/design/app_image.dart';
 import '../../../core/design/custom_app_bar.dart';
 import '../../../core/design/custom_app_bar_icon.dart';
@@ -31,7 +32,6 @@ class CompleteOrderView extends StatefulWidget {
 }
 
 class _CompleteOrderViewState extends State<CompleteOrderView> {
-
   final bloc = KiwiContainer().resolve<MyOrdersBloc>();
 
   AddressModel? model;
@@ -115,20 +115,19 @@ class _CompleteOrderViewState extends State<CompleteOrderView> {
                         }
                         bloc.addressId = model?.id.toString();
                         if (model != null) {
-                          setState(
-                                () {},
-                          );
+                          setState(() {});
                         }
                       },
                       child: DecoratedBox(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.r),
-                            border: Border.all(
-                              color:  AppColor.mainColor,
-                            ),
+                          borderRadius: BorderRadius.circular(15.r),
+                          border: Border.all(color: AppColor.mainColor),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 8.w),
+                          padding: EdgeInsets.symmetric(
+                            vertical: 5.h,
+                            horizontal: 8.w,
+                          ),
                           child: Row(
                             children: [
                               SizedBox(
@@ -138,9 +137,8 @@ class _CompleteOrderViewState extends State<CompleteOrderView> {
                                       (context.locale.languageCode == "en"
                                           ? "Select address"
                                           : "اختر عنوان"),
-                                  style: TextStyleTheme.textStyle14Bold.copyWith(
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                  style: TextStyleTheme.textStyle14Bold
+                                      .copyWith(fontWeight: FontWeight.w500),
                                   maxLines: 1,
                                 ),
                               ),
@@ -190,13 +188,14 @@ class _CompleteOrderViewState extends State<CompleteOrderView> {
                                   Text(
                                     datePicker == null
                                         ? LocaleKeys
-                                        .complete_order_choose_date_and_day
-                                        .tr()
+                                              .complete_order_choose_date_and_day
+                                              .tr()
                                         : datePicker.toString().split(" ")[0],
-                                    style: TextStyleTheme.textStyle14Bold.copyWith(
-                                      fontSize: 13.sp,
-                                      fontWeight: FontWeight.w400,
-                                    ),
+                                    style: TextStyleTheme.textStyle14Bold
+                                        .copyWith(
+                                          fontSize: 13.sp,
+                                          fontWeight: FontWeight.w400,
+                                        ),
                                   ),
                                   const Spacer(),
                                   AppImage(AppImages.date),
@@ -233,12 +232,13 @@ class _CompleteOrderViewState extends State<CompleteOrderView> {
                                   Text(
                                     timePicker == null
                                         ? LocaleKeys.complete_order_choose_time
-                                        .tr()
+                                              .tr()
                                         : " ${timePicker?.minute.toString()} : ${timePicker?.hour.toString()}",
-                                    style: TextStyleTheme.textStyle14Bold.copyWith(
-                                      fontSize: 13.sp,
-                                      fontWeight: FontWeight.w400,
-                                    ),
+                                    style: TextStyleTheme.textStyle14Bold
+                                        .copyWith(
+                                          fontSize: 13.sp,
+                                          fontWeight: FontWeight.w400,
+                                        ),
                                   ),
                                   const Spacer(),
                                   AppImage(AppImages.time),
@@ -251,7 +251,7 @@ class _CompleteOrderViewState extends State<CompleteOrderView> {
                       ),
                     ],
                   ),
-                 verticalSpace(21),
+                  verticalSpace(21),
                   Text(
                     LocaleKeys.complete_order_notes_and_instructions.tr(),
                     style: TextStyleTheme.textStyle14Bold,
@@ -277,28 +277,24 @@ class _CompleteOrderViewState extends State<CompleteOrderView> {
                   StatefulBuilder(
                     builder: (context, setState) => Row(
                       children: [
-                        _CustomPayWay(
+                        CustomPayWay(
                           onTap: () {
                             isKash = true;
                             isCards = false;
                             isWallet = false;
-                            setState(
-                                  () {},
-                            );
+                            setState(() {});
                           },
                           isTrue: isKash,
                           imagePath: AppImages.money,
                           title: LocaleKeys.complete_order_cash.tr(),
                         ),
                         horizontalSpace(15),
-                        _CustomPayWay(
+                        CustomPayWay(
                           onTap: () {
                             isKash = false;
                             isCards = true;
                             isWallet = false;
-                            setState(
-                                  () {},
-                            );
+                            setState(() {});
                           },
                           isCard: true,
                           fontSize: isCards ? 11 : 10,
@@ -308,17 +304,13 @@ class _CompleteOrderViewState extends State<CompleteOrderView> {
                               ? "Credit Cart"
                               : 'بطاقات الدفع',
                         ),
-                        SizedBox(
-                          width: 15.w,
-                        ),
-                        _CustomPayWay(
+                        horizontalSpace(15),
+                        CustomPayWay(
                           onTap: () {
                             isKash = false;
                             isCards = false;
                             isWallet = true;
-                            setState(
-                                  () {},
-                            );
+                            setState(() {});
                           },
                           isTrue: isWallet,
                           imagePath: 'assets/icons/account/Wallet.svg',
@@ -335,18 +327,18 @@ class _CompleteOrderViewState extends State<CompleteOrderView> {
                   verticalSpace(4),
                   KiwiContainer().resolve<CartBloc>().cartData!.isVip == 1
                       ? Text(
-                    KiwiContainer()
-                        .resolve<CartBloc>()
-                        .cartData!
-                        .vipMessage,
-                    style:
-                    TextStyle(fontSize: 13.sp, color: Colors.orange),
-                    textAlign: TextAlign.center,
-                  )
+                          KiwiContainer()
+                              .resolve<CartBloc>()
+                              .cartData!
+                              .vipMessage,
+                          style: TextStyle(
+                            fontSize: 13.sp,
+                            color: Colors.orange,
+                          ),
+                          textAlign: TextAlign.center,
+                        )
                       : verticalSpace(4),
-                  SizedBox(
-                    height: 4.h,
-                  ),
+                  SizedBox(height: 4.h),
                   CustomOrdersMoney(
                     model: KiwiContainer().resolve<CartBloc>().cartData!,
                     isCompleteOrder: true,
@@ -356,9 +348,7 @@ class _CompleteOrderViewState extends State<CompleteOrderView> {
                     bloc: bloc,
                     builder: (context, state) {
                       if (state is AddOrderLoadingState) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
+                        return const Center(child: CircularProgressIndicator());
                       }
                       return AppButton(
                         text: LocaleKeys.complete_order_finish_order.tr(),
@@ -370,8 +360,8 @@ class _CompleteOrderViewState extends State<CompleteOrderView> {
                             AddOrderEvent(
                               date: datePicker.toString().split(" ")[0],
                               time:
-                              "${timePicker?.hour.toString()}:${timePicker?.minute.toString()}"
-                                  .trim(),
+                                  "${timePicker?.hour.toString()}:${timePicker?.minute.toString()}"
+                                      .trim(),
                               payType: isWallet
                                   ? 'wallet'
                                   : isCards
@@ -385,76 +375,6 @@ class _CompleteOrderViewState extends State<CompleteOrderView> {
                   ),
                   verticalSpace(16),
                 ],
-              ),
-            ),
-          ),
-          // extendBody: true,
-        ),
-      ),
-    );
-  }
-}
-
-class _CustomPayWay extends StatefulWidget {
-  const _CustomPayWay({
-    this.isTrue = true,
-    required this.imagePath,
-    required this.title,
-    this.fontSize = 16,
-    required this.onTap,
-    this.isCard = false,
-  });
-  final bool isTrue;
-  final bool isCard;
-  final String imagePath;
-  final String title;
-  final int fontSize;
-  final void Function() onTap;
-  @override
-  State<_CustomPayWay> createState() => __CustomPayWayState();
-}
-
-class __CustomPayWayState extends State<_CustomPayWay> {
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: GestureDetector(
-        onTap: widget.onTap,
-        child: SizedBox(
-          height: 48.h,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(11.r),
-              border:
-              Border.all(
-                  width: widget.isTrue ? 3 : 1,
-                  color: AppColor.mainColor,
-              ),
-            ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 11.h, horizontal: 4.w),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    AppImage(
-                      widget.imagePath,
-                      height: widget.isTrue ? 16.h : 14.h,
-                    ),
-                    Flexible(
-                      child: Text(
-                        widget.title,
-                        style: TextStyle(
-                            color: AppColor.mainColor,
-                            fontSize: widget.isTrue
-                                ? widget.fontSize.sp
-                                : widget.isCard
-                                ? 9.sp
-                                : 12.sp,
-                            fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
               ),
             ),
           ),

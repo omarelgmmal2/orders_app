@@ -138,7 +138,7 @@ class _CustomTitleItemState extends State<CustomTitleItem> {
                         width: 24.h,
                         child:
                         const AppImage(
-                            'assets/icon/account/Edit2.svg',
+                            'assets/icons/account/Edit2.svg',
                         ),
                       ),
                     ],

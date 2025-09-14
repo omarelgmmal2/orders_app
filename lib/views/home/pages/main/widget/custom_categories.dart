@@ -28,7 +28,7 @@ class _CustomCategoriesState extends State<CustomCategories> {
           );
         } else if (state is GetCategorySuccessState) {
           return SizedBox(
-            height: 120.h,
+            height: 122.h,
             child: ListView.separated(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               scrollDirection: Axis.horizontal,

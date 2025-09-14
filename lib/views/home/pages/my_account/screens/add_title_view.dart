@@ -224,12 +224,14 @@ class _AddTitleViewState extends State<AddTitleView> {
                           builder: (context, state) {
                             if (state is SetAddressLoadingState ||
                                 state is UpdateAddressLoadingState) {
-                              return const Center(
-                                child: CircularProgressIndicator(),
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  color: AppColor.mainColor,
+                                ),
                               );
                             }
                             return SizedBox(
-                              width: double.infinity,
+                              width: double.infinity.w,
                               child: AppButton(
                                 text: widget.isAddTitle
                                     ? LocaleKeys.addresses_add_address.tr()
