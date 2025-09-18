@@ -70,14 +70,8 @@ class ProductsItem extends StatelessWidget {
                         Align(
                           alignment: AlignmentDirectional.topEnd,
                           child: Container(
-                            height: 20.h,
+                            height: 22.h,
                             width: 54.w,
-                            padding: EdgeInsets.only(
-                              left: 10.w,
-                              right: 10.w,
-                              bottom: 4.h,
-                              top: 2.h,
-                            ),
                             alignment: Alignment.topCenter,
                             decoration: BoxDecoration(
                               color: AppColor.mainColor,

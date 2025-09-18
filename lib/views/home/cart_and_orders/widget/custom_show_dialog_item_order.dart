@@ -13,8 +13,7 @@ class CustomShowDialogItemOrder extends StatefulWidget {
   const CustomShowDialogItemOrder({super.key, required this.model});
 
   @override
-  State<CustomShowDialogItemOrder> createState() =>
-      _CustomShowDialogItemOrderState();
+  State<CustomShowDialogItemOrder> createState() => _CustomShowDialogItemOrderState();
 }
 
 class _CustomShowDialogItemOrderState extends State<CustomShowDialogItemOrder> {

@@ -14,6 +14,7 @@ class AppImages {
   static const noDataCart = "${basePathImages}no_data_cart$formatImage";
   static const notFound = "${basePathImages}not_found$formatImage";
   static const noAddresses = "${basePathImages}no_addresses$formatImage";
+  static const car = "${basePathImages}car$formatImage";
 
 
   // Icons Path

@@ -50,5 +50,11 @@
     	<string>en</string>
     	<string>ar</string>
     </array>
+
+    <key>NSLocationWhenInUsageDescription</key>
+    <String>We need your location to show your position on the map.</string>
+    <key>NSLocationAlwaysInUsageDescription</key>
+    <String>We need your location to keep tracking your movement.</string>
+
 </dict>
 </plist>

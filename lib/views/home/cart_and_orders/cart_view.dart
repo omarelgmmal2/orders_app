@@ -97,9 +97,7 @@ class _CartViewState extends State<CartView> {
                                 BoxShadow(
                                   offset: const Offset(0, 0),
                                   blurRadius: 17,
-                                  color: const Color(
-                                    0xff000000,
-                                  ).withOpacity(0.02),
+                                  color: const Color(0xff000000).withOpacity(0.02),
                                 ),
                               ],
                             ),
