@@ -79,7 +79,8 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                           blurRadius: 17,
                           color: Colors.black.withOpacity(0.02),
                         )
-                      ]),
+                      ],
+                  ),
                   child: Padding(padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 15.w),
                     child: Row(
                       children: [
@@ -91,7 +92,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                               style: TextStyleTheme.textStyle15Medium,
                             ),
                             SizedBox(
-                              width: 200,
+                              width: 200.w,
                               child: Text(
                                 bloc.orderModel?.address?.location ?? '',
                                 style: TextStyleTheme.textStyle12Light,
@@ -188,7 +189,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                       ? "Cancel Order"
                       : 'إلغاء الطلب',
                   style: TextStyleTheme.textStyle15Bold.copyWith(
-                    color: AppColor.redOpacity,
+                    color: AppColor.red,
                   ),
                 ),
               );
